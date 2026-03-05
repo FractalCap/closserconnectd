@@ -194,7 +194,7 @@ export const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="md:hidden fixed inset-0 bg-white z-[90] h-[100dvh] w-screen animate-in fade-in duration-200 overflow-y-auto overscroll-none touch-none">
+        <div className="md:hidden fixed inset-0 bg-white z-[90] h-[100dvh] w-full animate-in fade-in duration-200 overflow-y-auto overscroll-none touch-none">
           <div className="flex flex-col p-6 h-full pt-24 pb-10">
             
             <div className="mb-4">
