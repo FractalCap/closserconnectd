@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --cc-primary: #2563EB;
+    --cc-primary-dark: #1E40AF;
+    --cc-accent: #10B981;
+    --cc-text: #0F172A;
+    --cc-muted: #475569;
+    --cc-bg: #FFFFFF;
+    --cc-bg-soft: #F8FAFC;
+    --cc-border: #E2E8F0;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--cc-bg);
+    color: var(--cc-text);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--cc-text);
+  }
+}
