@@ -123,24 +123,24 @@ export const Hero = () => {
           </button>
         </motion.div>
 
-        <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-16 border-t border-white/10 pt-8 md:pt-10 w-full max-w-4xl mx-auto">
-          <div className="flex flex-col items-start md:items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
-            <span className="text-3xl md:text-4xl font-bold text-white mb-1">
+        <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-2 md:gap-16 border-t border-white/10 pt-8 md:pt-10 w-full max-w-4xl mx-auto">
+          <div className="flex flex-col items-center md:items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
+            <span className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-1">
               <Counter from={0} to={5000} prefix="+" />
             </span>
-            <span className="text-xs md:text-sm text-gray-400 font-medium uppercase tracking-wider">Talentos Validados</span>
+            <span className="text-[10px] sm:text-xs md:text-sm text-gray-400 font-medium uppercase tracking-wider text-center">Talentos Validados</span>
           </div>
-          <div className="flex flex-col items-start md:items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
-            <span className="text-3xl md:text-4xl font-bold text-white mb-1">
+          <div className="flex flex-col items-center md:items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
+            <span className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-1">
               <Counter from={0} to={50} prefix="+" />
             </span>
-            <span className="text-xs md:text-sm text-gray-400 font-medium uppercase tracking-wider">Empresas Partner</span>
+            <span className="text-[10px] sm:text-xs md:text-sm text-gray-400 font-medium uppercase tracking-wider text-center">Empresas Partner</span>
           </div>
-          <div className="flex flex-col items-start md:items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
-            <span className="text-3xl md:text-4xl font-bold text-white mb-1">
+          <div className="flex flex-col items-center md:items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
+            <span className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-1">
               <Counter from={0} to={100} suffix="%" />
             </span>
-            <span className="text-xs md:text-sm text-gray-400 font-medium uppercase tracking-wider">Satisfacción</span>
+            <span className="text-[10px] sm:text-xs md:text-sm text-gray-400 font-medium uppercase tracking-wider text-center">Satisfacción</span>
           </div>
         </motion.div>
 
