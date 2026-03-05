@@ -20,7 +20,7 @@ import { cn, scrollToSection } from './utils';
 import { SectionHeader, AnimatedCounter, LatamUsaHeader } from './components';
 
 // --- Hero Section ---
-const Counter = ({ from, to, duration = 2, prefix = '', suffix = '' }: { from: number, to: number, duration?: number, prefix?: string, suffix?: string }) => {
+const Counter = ({ from, to, duration = 2.5, prefix = '', suffix = '' }: { from: number, to: number, duration?: number, prefix?: string, suffix?: string }) => {
   const nodeRef = useRef<HTMLSpanElement>(null);
   const isInView = useInView(nodeRef, { once: true, margin: "-20%" });
 

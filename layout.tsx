@@ -177,8 +177,8 @@ export const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           className={cn(
-            "md:hidden p-2 rounded-lg transition-colors duration-300 relative z-50 focus:outline-none focus:ring-2 focus:ring-brand-500",
-            (scrolled || isOpen) ? "text-muted hover:bg-background-soft" : "text-white hover:bg-white/10"
+            "md:hidden p-2 rounded-lg transition-colors duration-300 relative z-[110] focus:outline-none focus:ring-2 focus:ring-brand-500",
+            (scrolled || isOpen) ? "text-brand-900 hover:bg-background-soft" : "text-white hover:bg-white/10"
           )}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
