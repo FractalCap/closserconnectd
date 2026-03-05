@@ -107,13 +107,13 @@ export const Hero = () => {
         </motion.p>
 
         <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-12 md:mb-16">
-          <button
-            onClick={() => scrollToSection('contacto')}
+          <Link
+            to="/empresas/aplicar"
             className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-3.5 md:py-4 text-sm md:text-base font-bold text-white shadow-lg shadow-blue-600/20 transition-all hover:bg-blue-700 hover:scale-105 hover:shadow-blue-600/40 active:scale-95"
           >
             Agenda una sesión
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          </Link>
           
           <button
             onClick={() => scrollToSection('divisiones')}
@@ -546,7 +546,7 @@ export const HowWeWork = () => {
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         <Link
-          to="/contacto"
+          to="/empresas/aplicar"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-8 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-brand-700 hover:shadow-lg hover:-translate-y-0.5"
         >
           Agenda una sesión
