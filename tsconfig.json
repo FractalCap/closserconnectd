@@ -21,13 +21,12 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": false,
     "noUncheckedSideEffectImports": false,
-    "forceConsistentCasingInFileNames": false
+    "forceConsistentCasingInFileNames": false,
+    "baseUrl": "./"
   },
   "include": [
-    "."
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
+    "*.ts",
+    "*.tsx",
+    "api"
   ]
 }

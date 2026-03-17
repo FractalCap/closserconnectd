@@ -1,13 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tsconfigPaths from "vite-tsconfig-paths";
+import { viteSingleFile } from 'vite-plugin-singlefile'
 
 // https://vite.dev/config/
 export default defineConfig({
   base: './',
-  build: {
-    sourcemap: 'hidden',
-  },
   plugins: [
     react({
       babel: {
@@ -16,6 +13,19 @@ export default defineConfig({
         ],
       },
     }),
-    tsconfigPaths()
+    viteSingleFile()
   ],
+  server: {
+    open: '/dev.html', // Open dev.html by default when starting dev server
+  },
+  build: {
+    sourcemap: 'hidden',
+    outDir: 'dist',
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: 'dev.html', // Use dev.html as the input for build
+      },
+    }
+  }
 })
