@@ -60,7 +60,7 @@ export const PhoneInput = ({
         }
       }
     }
-  }, [value]);
+  }, [value, dialCode, localNumber]);
 
   const handleDialChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const newDial = e.target.value;

@@ -3,12 +3,11 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Building2, 
+  User,
   UserCheck, 
   Briefcase, 
   Star, 
-  Check, 
   Globe2, 
-  MapPin, 
   UserCircle,
   HelpCircle,
   ChevronDown,
@@ -16,7 +15,7 @@ import {
 } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView, animate, AnimatePresence, Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { cn, scrollToSection } from './utils';
+import { cn } from './utils';
 import { SectionHeader, AnimatedCounter, LatamUsaHeader } from './components';
 
 // --- Hero Section ---
@@ -96,12 +95,10 @@ export const Hero = () => {
       >
         <motion.h1 variants={fadeInUp} className="font-heading max-w-5xl text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4 md:mb-6 leading-tight">
           Ecosistema Estratégico de <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
-            Talento y Negocios
-          </span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Talento y Negocios</span>
         </motion.h1>
 
-        <motion.p variants={fadeInUp} className="font-sans max-w-2xl text-base sm:text-lg md:text-xl text-gray-200 mb-8 md:mb-10 leading-relaxed px-0 md:px-2">
+        <motion.p variants={fadeInUp} className="max-w-2xl text-lg md:text-xl text-gray-300 mb-8 md:mb-10 leading-relaxed">
           Potenciamos el crecimiento empresarial con soluciones integrales y talento remoto validado. 
           Calidad enterprise, agilidad startup.
         </motion.p>
@@ -111,16 +108,19 @@ export const Hero = () => {
             to="/empresas/aplicar"
             className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-3.5 md:py-4 text-sm md:text-base font-bold text-white shadow-lg shadow-blue-600/20 transition-all hover:bg-blue-700 hover:scale-105 hover:shadow-blue-600/40 active:scale-95"
           >
-            Agenda una sesión
+            <Building2 className="w-5 h-5" />
+            Soy una empresa
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           
-          <button
-            onClick={() => scrollToSection('divisiones')}
+          <Link
+            to="/profesionales/aplicar"
             className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 bg-white px-8 py-3.5 md:py-4 text-sm md:text-base font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900 hover:scale-105 active:scale-95"
           >
-            Ver soluciones
-          </button>
+            <User className="w-5 h-5" />
+            Soy profesional
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </motion.div>
 
         <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-2 md:gap-16 border-t border-white/10 pt-8 md:pt-10 w-full max-w-4xl mx-auto">
@@ -160,16 +160,6 @@ export const Hero = () => {
         animate={{ opacity: 1, transition: { delay: 1.5, duration: 1 } }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
       >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">Scroll</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-white/0 via-white/50 to-white/0 relative overflow-hidden">
-            <motion.div 
-              animate={{ y: [-20, 20], opacity: [0, 1, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="absolute top-1/2 left-0 right-0 w-full h-1/2 bg-gradient-to-b from-transparent via-white to-transparent"
-            />
-          </div>
-        </div>
       </motion.div>
     </section>
   );
@@ -345,7 +335,7 @@ export const BusinessUnits = () => {
   return (
     <div className="container mx-auto px-4 md:px-6">
       <SectionHeader 
-        eyebrow="Nuestras Divisiones"
+        eyebrow="Unidades de negocio"
         title="Soluciones Integrales"
         subtitle="Un ecosistema diseñado para potenciar el crecimiento en cada nivel."
         className="mb-16"

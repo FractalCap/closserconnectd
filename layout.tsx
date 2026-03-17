@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn, scrollToSection } from './utils';
 
@@ -54,29 +54,35 @@ export const Navbar = () => {
     };
   }, [isOpen]);
 
-  const navigateToSection = (id: string) => {
+  const navigateToSection = (item: { path: string, id: string }) => {
     setIsOpen(false);
     setIsServicesOpen(false);
     
-    if (location.pathname === '/') {
-      scrollToSection(id);
-      window.history.pushState(null, '', `/#${id}`);
+    if (item.path.startsWith('/#')) {
+      const id = item.path.substring(2);
+      if (location.pathname === '/') {
+        scrollToSection(id);
+        window.history.pushState(null, '', `/#${id}`);
+      } else {
+        navigate(`/#${id}`);
+      }
     } else {
-      navigate(`/#${id}`);
+      navigate(item.path);
     }
   };
 
   const servicesItems = [
-    { name: 'Empresas', id: 'empresas' },
-    { name: 'Profesionales', id: 'profesionales' },
-    { name: 'Unidades de negocio', id: 'divisiones' },
-    { name: 'Alcance', id: 'alcance' },
+    { name: 'Empresas', id: 'empresas', path: '/empresas/aplicar' },
+    { name: 'Profesionales', id: 'profesionales', path: '/profesionales/aplicar' },
+    { name: 'Unidades de negocio', id: 'divisiones', path: '/#divisiones' },
+    { name: 'Alcance', id: 'alcance', path: '/#alcance' },
   ];
 
   const navLinks = [
-    { name: 'Cómo trabajamos', id: 'como-trabajamos' },
-    { name: 'Testimonios', id: 'testimonios' },
-    { name: 'FAQ', id: 'faq' },
+    { name: 'Cómo trabajamos', id: 'como-trabajamos', path: '/como-trabajamos' },
+    { name: 'Formación', id: 'formacion', path: '/formacion' },
+    { name: 'Testimonios', id: 'testimonios', path: '/#testimonios' },
+    { name: 'FAQ', id: 'faq', path: '/#faq' },
   ];
 
   return (
@@ -91,7 +97,7 @@ export const Navbar = () => {
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center relative z-[101]">
-        <button onClick={() => navigateToSection('top')} className="flex items-center gap-3 group outline-none">
+        <button onClick={() => navigateToSection({ path: '/#top', id: 'top' })} className="flex items-center gap-3 group outline-none">
           <img 
             src="https://i.postimg.cc/B6HR8v7f/closerlogo.png" 
             alt="Closer Connected Logo" 
@@ -133,7 +139,7 @@ export const Navbar = () => {
                 {servicesItems.map((item) => (
                   <button
                     key={item.id}
-                    onClick={() => navigateToSection(item.id)}
+                    onClick={() => navigateToSection(item)}
                     className="w-full text-left px-4 py-2.5 text-sm text-muted hover:bg-background-soft hover:text-brand-700 transition-colors focus:outline-none focus:bg-background-soft font-medium"
                     role="menuitem"
                   >
@@ -147,7 +153,7 @@ export const Navbar = () => {
           {navLinks.map((link) => (
             <button
               key={link.id}
-              onClick={() => navigateToSection(link.id)}
+              onClick={() => navigateToSection(link)}
               className={cn(
                 "text-sm font-medium px-4 py-2 rounded-lg transition-all duration-300",
                 scrolled 
@@ -211,7 +217,7 @@ export const Navbar = () => {
                   {servicesItems.map((item) => (
                     <button
                       key={item.id}
-                      onClick={() => navigateToSection(item.id)}
+                      onClick={() => navigateToSection(item)}
                       className="w-full text-left px-4 py-2.5 text-sm text-brand-900/80 hover:text-brand-700 hover:bg-brand-50 rounded-lg font-medium transition-colors"
                     >
                       {item.name}
@@ -225,7 +231,7 @@ export const Navbar = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.id}
-                  onClick={() => navigateToSection(link.id)}
+                  onClick={() => navigateToSection(link)}
                   className="w-full text-left px-4 py-3.5 text-base text-muted hover:text-brand-900 hover:bg-background-soft rounded-xl font-medium transition-all active:bg-background-soft"
                 >
                   {link.name}
@@ -290,7 +296,7 @@ export const Footer = () => {
                 { label: "Inicio", href: "/" },
                 { label: "Para Empresas", href: "/empresas/aplicar" },
                 { label: "Para Profesionales", href: "/#profesionales" },
-                { label: "Sobre Nosotros", href: "/#como-trabajamos" },
+                { label: "Sobre Nosotros", href: "/como-trabajamos" },
                 { label: "Casos de Éxito", href: "/#testimonios" }
               ].map((link, idx) => (
                 <li key={idx}>

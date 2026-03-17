@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ChevronDown } from 'lucide-react';
 import { scrollToSection } from './utils';
-import { Hero, TripleImpact, BusinessUnits, HowWeWork, OurReach, Testimonials, FAQ } from './sections';
+import { Hero, BusinessUnits, OurReach, Testimonials, FAQ } from './sections';
 import { CompanyApplyForm, FinalCtaForm } from './forms';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Home Page ---
 export const Home = () => {
@@ -26,16 +27,7 @@ export const Home = () => {
       
       <div id="empresas" className="scroll-mt-24" />
       <div id="profesionales" className="scroll-mt-24" />
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        {/* Luxury Background */}
-        <div className="absolute inset-0 bg-background-soft pointer-events-none -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-100 via-background to-background opacity-70" />
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-          {/* Subtle Grid Pattern */}
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-multiply" />
-        </div>
-        <TripleImpact />
-      </section>
+
       
       <div id="divisiones" className="scroll-mt-24" />
       <section className="bg-background-soft py-16 md:py-24 relative overflow-hidden">
@@ -44,10 +36,7 @@ export const Home = () => {
         <BusinessUnits />
       </section>
       
-      <div id="como-trabajamos" className="scroll-mt-24" />
-      <section className="bg-background py-16 md:py-24">
-        <HowWeWork />
-      </section>
+
       
       {/* Added comunidad ID wrapper for navigation consistency */}
       <div id="comunidad" className="scroll-mt-24" />
@@ -74,6 +63,8 @@ export const Home = () => {
 
 // --- Company Apply Page ---
 export const CompanyApply = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background-soft">
       {/* Simple Header */}
@@ -98,13 +89,87 @@ export const CompanyApply = () => {
             <span className="inline-block py-1 px-3 rounded-full bg-brand-50 border border-brand-100 text-brand-600 font-bold tracking-wider uppercase text-xs mb-4">
               Para Empresas
             </span>
-            <h1 className="text-3xl md:text-5xl font-extrabold text-brand-900 mb-6 tracking-tight">
-              Comienza tu búsqueda de talento
-            </h1>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-brand-900 mb-6 tracking-tight">Comienza tu búsqueda de talento</h1>
             <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
               Completa el formulario para conectarte con profesionales pre-validado en LATAM. 
               Te ayudaremos a encontrar el perfil ideal en tiempo récord.
             </p>
+          </div>
+
+          {/* New Business Section */}
+          <div className="mb-16 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
+            <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
+              <h2 className="text-2xl font-bold text-brand-900 mb-6 text-center">Soluciones Integrales para Empresas</h2>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-lg font-semibold text-brand-800 mb-3 flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+                    </div>
+                    Contratación de Talento
+                  </h3>
+                  <p className="text-muted text-sm leading-relaxed mb-4">
+                    Acceda a nuestra bolsa de empleo exclusiva con perfiles pre-validados y capacitados. Ofrecemos dos modalidades:
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2 text-sm text-brand-900">
+                      <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span><strong>Directa:</strong> Incorpore talento a su nómina con nuestra garantía de selección.</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-brand-900">
+                      <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span><strong>Vía EOR:</strong> Nosotros gestionamos la contratación, nómina y cumplimiento legal.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold text-brand-800 mb-3 flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    </div>
+                    Servicios Consultivos
+                  </h3>
+                  <p className="text-muted text-sm leading-relaxed mb-4">
+                    Más allá del reclutamiento, optimizamos sus operaciones con servicios especializados:
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm text-brand-900">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                      <span>Inteligencia de Negocios y Analítica (BI)</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-brand-900">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                      <span>Asesoría Legal y Movilidad Global</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-brand-900">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                      <span>Protección Financiera y Patrimonial</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-brand-900">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                      <span>Agencia Digital y Marketing Creativo</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-border">
+                <div className="bg-brand-50/50 rounded-xl p-4 border border-brand-100 flex gap-4 items-start">
+                  <div className="p-2 bg-white rounded-lg shadow-sm text-brand-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-brand-900 text-sm mb-1">Garantía de Calidad "Dogfooding"</h4>
+                    <p className="text-xs text-muted leading-relaxed">
+                      Utilizamos nuestra propia comunidad de talento para nutrir nuestros equipos internos. 
+                      Los profesionales que recomendamos han sido probados y validados bajo nuestros propios estándares operativos.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Value Props */}
@@ -121,8 +186,57 @@ export const CompanyApply = () => {
             ))}
           </div>
 
-          {/* Form Container */}
-          <CompanyApplyForm />
+          {/* Additional Info Section */}
+          <div className="mb-12 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
+            <h2 className="text-2xl font-bold text-brand-900 mb-6 text-center">Por qué las empresas líderes nos eligen</h2>
+            <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
+              <p className="text-muted leading-relaxed mb-6">
+                En <strong>Closer Connected</strong>, no solo conectamos empresas con talento; construimos un ecosistema de crecimiento mutuo. 
+                Nuestra propuesta de valor se basa en una sinergia de triple impacto que beneficia a empresas, profesionales y a nuestra propia organización.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold text-brand-900 mb-2">Reducción de Riesgos</h4>
+                  <p className="text-sm text-muted">
+                    Minimizamos el riesgo de malas contrataciones mediante un proceso de validación riguroso y una garantía de reemplazo. 
+                    Además, gestionamos el cumplimiento legal en contrataciones internacionales.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-brand-900 mb-2">Agilidad y Velocidad</h4>
+                  <p className="text-sm text-muted">
+                    Gracias a nuestra comunidad activa de talento, podemos presentar candidatos calificados en tiempos récord, 
+                    reduciendo significativamente el "Time-to-Hire" y los costos operativos.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Form Toggle Button */}
+          <div className="flex justify-center mb-8">
+            <button
+              onClick={() => setIsFormOpen(!isFormOpen)}
+              className="group flex items-center gap-3 px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:scale-95"
+            >
+              <span>{isFormOpen ? 'Ocultar Formulario' : 'Comenzar Solicitud'}</span>
+              <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isFormOpen ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
+
+          {/* Form Container with Collapse Animation */}
+          <AnimatePresence>
+            {isFormOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, overflow: 'hidden' }}
+                animate={{ opacity: 1, height: 'auto', overflow: 'visible' }}
+                exit={{ opacity: 0, height: 0, overflow: 'hidden' }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              >
+                <CompanyApplyForm />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         </div>
       </main>

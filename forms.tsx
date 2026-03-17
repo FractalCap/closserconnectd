@@ -11,7 +11,6 @@ import {
   Check,
   Loader2,
   ArrowRight,
-  Upload,
   CheckCircle,
   ChevronDown
 } from 'lucide-react';
@@ -153,12 +152,6 @@ export const CompanyApplyForm = () => {
       return { ...prev, areas: newAreas };
     });
     if (errors.areas) setErrors(prev => ({ ...prev, areas: '' }));
-  };
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData(prev => ({ ...prev, jdFile: e.target.files![0] }));
-    }
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -574,30 +567,8 @@ export const CompanyApplyForm = () => {
         </div>
 
         <div className="group">
-          <label className="block text-sm font-semibold text-brand-900 mb-3">Descripción del Puesto (Opcional)</label>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="border-2 border-dashed border-border rounded-xl p-6 flex flex-col items-center justify-center text-center bg-background-soft hover:bg-brand-50 hover:border-brand-300 transition-all cursor-pointer relative">
-              <input 
-                type="file" 
-                onChange={handleFileChange}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                accept=".pdf,.doc,.docx"
-              />
-              <Upload className="w-8 h-8 text-muted mb-2" />
-              <p className="text-sm font-medium text-brand-900">Sube tu JD (PDF/Word)</p>
-              <p className="text-xs text-muted mt-1">
-                {formData.jdFile ? formData.jdFile.name : "Arrastra o haz clic"}
-              </p>
-            </div>
-            <textarea
-              name="pasteJD"
-              value={formData.pasteJD}
-              onChange={handleChange}
-              rows={4}
-              className="w-full px-4 py-3 rounded-xl border border-border bg-background-soft focus:bg-background outline-none transition-all resize-none"
-              placeholder="O pega el texto del JD aquí..."
-            />
-          </div>
+
+
         </div>
       </div>
 
